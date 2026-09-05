@@ -1,0 +1,4 @@
+aiosqlite>=0.22.1
+alembic>=1.19.2
+greenlet>=3.2.7
+SQLAlchemy[asyncio]>=2.0.46
