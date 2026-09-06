@@ -1,12 +1,11 @@
 """Singer Table"""
 
-from datetime import datetime
-from typing import Optional
-
-from sqlalchemy import Boolean, Date, ForeignKey, Integer, String, and_, not_
+from sqlalchemy import Integer, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from database.base import ModelBase
+from database.singer_voice_option_xref import singer_voice_option_xref
+from database.voice_option_model import VoiceOptionModel
 
 
 class SingerModel(ModelBase):
@@ -22,6 +21,11 @@ class SingerModel(ModelBase):
     """First Name"""
     last_name: Mapped[str] = mapped_column("last_name", String, nullable=False)
     """Last Name"""
+
+    voice_options: Mapped[list[VoiceOptionModel]] = relationship(
+        secondary=singer_voice_option_xref, lazy="selectin"
+    )
+    """Countries"""
 
     def __init__(self, first_name: str, last_name: str):
         self.first_name = first_name

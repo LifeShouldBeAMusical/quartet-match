@@ -1,14 +1,11 @@
 """Singer Table"""
 
-from datetime import datetime
-from typing import Optional
-
-from database.quartet_range_enum import QuartetRangeEnum
-from database.singer_voice_enum import SingerVoiceEnum
-from sqlalchemy import Boolean, Date, Enum, ForeignKey, Integer, String, and_, not_
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Enum, Integer
+from sqlalchemy.orm import Mapped, mapped_column
 
 from database.base import ModelBase
+from database.quartet_range_enum import QuartetRangeEnum
+from database.singer_voice_enum import SingerVoiceEnum
 
 
 class VoiceOptionModel(ModelBase):
