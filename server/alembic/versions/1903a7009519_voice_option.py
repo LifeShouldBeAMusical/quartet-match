@@ -11,9 +11,8 @@ from typing import Sequence, Union
 from alembic import op
 import sqlalchemy as sa
 
-from database.quartet_range_enum import QuartetRangeEnum
-from database.singer_voice_enum import SingerVoiceEnum
-from database.voice_option_model import VoiceOptionModel
+from database import VoiceOptionModel
+from enum_model import QuartetRangeEnum, SingerVoiceEnum
 
 # revision identifiers, used by Alembic.
 revision: str = "1903a7009519"
