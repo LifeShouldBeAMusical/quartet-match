@@ -1,5 +1,7 @@
 aiosqlite>=0.22.1
 alembic>=1.19.2
 black>=26.5.1
+fastapi[standard]>=0.131.0
 greenlet>=3.2.7
 SQLAlchemy[asyncio]>=2.0.46
+strawberry-graphql[fastapi]>=0.304.0

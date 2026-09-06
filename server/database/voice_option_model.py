@@ -4,8 +4,7 @@ from sqlalchemy import Enum, Integer
 from sqlalchemy.orm import Mapped, mapped_column
 
 from database.base import ModelBase
-from database.quartet_range_enum import QuartetRangeEnum
-from database.singer_voice_enum import SingerVoiceEnum
+from enum_model import QuartetRangeEnum, SingerVoiceEnum
 
 
 class VoiceOptionModel(ModelBase):
