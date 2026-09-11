@@ -61,7 +61,7 @@ def valid_quartet(singers: list[SingerModel]) -> Optional[Quartet]:
             if v.singer_voice == SingerVoiceEnum.BARI
         }
         bassOptions = {
-            v.singer_voice
+            v.quartet_range
             for v in bass.voice_options
             if v.singer_voice == SingerVoiceEnum.BASS
         }
