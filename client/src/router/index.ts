@@ -17,6 +17,11 @@ const routes = [
 		name: "input",
 		component: () => import("../views/AddSingerView.vue"),
 	},
+	{
+		path: "/quartets",
+		name: "quartets",
+		component: () => import("../views/QuartetsView.vue"),
+	},
 ];
 
 const router = createRouter({
