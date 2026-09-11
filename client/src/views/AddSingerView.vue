@@ -22,7 +22,24 @@ const voiceTTBBLead = ref(false);
 const voiceTTBBBari = ref(false);
 const voiceTTBBBass = ref(false);
 
-const addSinger = () =>
+const resetVariables = () => {
+	first.value = "";
+	last.value = "";
+	voiceSSAATenor.value = false;
+	voiceSSAALead.value = false;
+	voiceSSAABari.value = false;
+	voiceSSAABass.value = false;
+	voiceSATBTenor.value = false;
+	voiceSATBLead.value = false;
+	voiceSATBBari.value = false;
+	voiceSATBBass.value = false;
+	voiceTTBBTenor.value = false;
+	voiceTTBBLead.value = false;
+	voiceTTBBBari.value = false;
+	voiceTTBBBass.value = false;
+};
+
+const addSinger = () => {
 	store.addSinger(first.value, last.value, [
 		...(voiceSSAATenor.value
 			? [{ quartetRange: QuartetRangeEnum.Ssaa, voice: SingerVoiceEnum.Tenor }]
@@ -61,6 +78,8 @@ const addSinger = () =>
 			? [{ quartetRange: QuartetRangeEnum.Ttbb, voice: SingerVoiceEnum.Bass }]
 			: []),
 	]);
+	resetVariables();
+};
 </script>
 
 <template>
