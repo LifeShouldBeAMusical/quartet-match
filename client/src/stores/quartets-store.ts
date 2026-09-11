@@ -43,7 +43,8 @@ export const useQuartetsStore = defineStore(
 		onScratchQuartetResult(
 			({ data }) => (quartetListData.value = data.scratchQuartets),
 		);
-		const fetchScratchQuartetList = () => loadScratchQuartets(scratchQuartetsQuery);
+		const fetchScratchQuartetList = () =>
+			loadScratchQuartets(scratchQuartetsQuery);
 
 		return { fetchScratchQuartetList, quartetList };
 	},

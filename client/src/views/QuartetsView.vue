@@ -18,8 +18,35 @@ onBeforeMount(() => store.fetchScratchQuartetList());
 		<h3 v-if="error">Error</h3>
 		<v-contaienr class="ma-0 pa-0 quartet-list-container">
 			<v-card v-for="(quartet, idx) in data" :key="idx">
-				<v-card-title>Quartet {{ idx }}</v-card-title>
-				<v-card-text>{{ quartet }}</v-card-text>
+				<v-card-title>Quartet {{ idx + 1 }}</v-card-title>
+				<v-card-text>
+					<v-table>
+						<tr>
+							<th>Tenor:</th>
+							<td>
+								{{ quartet.tenor.name.first }} {{ quartet.tenor.name.last }}
+							</td>
+						</tr>
+						<tr>
+							<th>Lead:</th>
+							<td>
+								{{ quartet.lead.name.first }} {{ quartet.lead.name.last }}
+							</td>
+						</tr>
+						<tr>
+							<th>Bari:</th>
+							<td>
+								{{ quartet.bari.name.first }} {{ quartet.bari.name.last }}
+							</td>
+						</tr>
+						<tr>
+							<th>Bass:</th>
+							<td>
+								{{ quartet.bass.name.first }} {{ quartet.bass.name.last }}
+							</td>
+						</tr>
+					</v-table>
+				</v-card-text>
 			</v-card>
 		</v-contaienr>
 	</v-container>
@@ -29,5 +56,10 @@ onBeforeMount(() => store.fetchScratchQuartetList());
 .quartet-list-container {
 	display: flex;
 	flex-flow: row wrap;
+	th {
+		font-weight: 700;
+		text-align: left;
+		padding-right: 4px;
+	}
 }
 </style>
