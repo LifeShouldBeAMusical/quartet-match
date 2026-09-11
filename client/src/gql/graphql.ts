@@ -104,6 +104,17 @@ export type VoiceOptionInput = {
 	voice: SingerVoiceEnum;
 };
 
+export type AddSingerMutationVariables = Exact<{
+	first: Scalars["String"]["input"];
+	last: Scalars["String"]["input"];
+	voiceOptions: Array<VoiceOptionInput> | VoiceOptionInput;
+}>;
+
+export type AddSingerMutation = {
+	__typename?: "Mutation";
+	addSinger: { __typename?: "Singer"; id: string };
+};
+
 export type SingerListQueryVariables = Exact<{ [key: string]: never }>;
 
 export type SingerListQuery = {
@@ -120,6 +131,122 @@ export type SingerListQuery = {
 	}>;
 };
 
+export const AddSingerDocument = {
+	kind: "Document",
+	definitions: [
+		{
+			kind: "OperationDefinition",
+			operation: "mutation",
+			name: { kind: "Name", value: "AddSinger" },
+			variableDefinitions: [
+				{
+					kind: "VariableDefinition",
+					variable: {
+						kind: "Variable",
+						name: { kind: "Name", value: "first" },
+					},
+					type: {
+						kind: "NonNullType",
+						type: {
+							kind: "NamedType",
+							name: { kind: "Name", value: "String" },
+						},
+					},
+				},
+				{
+					kind: "VariableDefinition",
+					variable: { kind: "Variable", name: { kind: "Name", value: "last" } },
+					type: {
+						kind: "NonNullType",
+						type: {
+							kind: "NamedType",
+							name: { kind: "Name", value: "String" },
+						},
+					},
+				},
+				{
+					kind: "VariableDefinition",
+					variable: {
+						kind: "Variable",
+						name: { kind: "Name", value: "voiceOptions" },
+					},
+					type: {
+						kind: "NonNullType",
+						type: {
+							kind: "ListType",
+							type: {
+								kind: "NonNullType",
+								type: {
+									kind: "NamedType",
+									name: { kind: "Name", value: "VoiceOptionInput" },
+								},
+							},
+						},
+					},
+				},
+			],
+			selectionSet: {
+				kind: "SelectionSet",
+				selections: [
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "addSinger" },
+						arguments: [
+							{
+								kind: "Argument",
+								name: { kind: "Name", value: "singer" },
+								value: {
+									kind: "ObjectValue",
+									fields: [
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "name" },
+											value: {
+												kind: "ObjectValue",
+												fields: [
+													{
+														kind: "ObjectField",
+														name: { kind: "Name", value: "first" },
+														value: {
+															kind: "Variable",
+															name: { kind: "Name", value: "first" },
+														},
+													},
+													{
+														kind: "ObjectField",
+														name: { kind: "Name", value: "last" },
+														value: {
+															kind: "Variable",
+															name: { kind: "Name", value: "last" },
+														},
+													},
+												],
+											},
+										},
+										{
+											kind: "ObjectField",
+											name: { kind: "Name", value: "voiceOptions" },
+											value: {
+												kind: "Variable",
+												name: { kind: "Name", value: "voiceOptions" },
+											},
+										},
+									],
+								},
+							},
+						],
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+							],
+						},
+					},
+				],
+			},
+		},
+	],
+} as unknown as DocumentNode<AddSingerMutation, AddSingerMutationVariables>;
 export const SingerListDocument = {
 	kind: "Document",
 	definitions: [
