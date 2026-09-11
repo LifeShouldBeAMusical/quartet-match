@@ -3,7 +3,7 @@ from typing import Optional
 
 from sqlalchemy import select
 
-from api import Quartet
+from api import Quartet, Singer, SingerName
 from database import SingerModel, get_async_session
 from enum_model import SingerVoiceEnum
 
@@ -68,7 +68,15 @@ def valid_quartet(singers: list[SingerModel]) -> Optional[Quartet]:
         combo = tenorOptions & leadOptions & bariOptions & bassOptions
         if len(combo) > 0:
 
-            return Quartet(combo.pop(), tenor, lead, bari, bass)
+            return Quartet(
+                combo.pop(),
+                tenor=Singer(
+                    tenor.id, SingerName(tenor.first_name, tenor.last_name), []
+                ),
+                lead=Singer(lead.id, SingerName(lead.first_name, lead.last_name), []),
+                bari=Singer(bari.id, SingerName(bari.first_name, bari.last_name), []),
+                bass=Singer(bass.id, SingerName(bass.first_name, bass.last_name), []),
+            )
 
     return None
 
