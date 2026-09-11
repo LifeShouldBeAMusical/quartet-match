@@ -12,6 +12,11 @@ const routes = [
 		name: "singers",
 		component: () => import("../views/SingersView.vue"),
 	},
+	{
+		path: "/input",
+		name: "input",
+		component: () => import("../views/AddSingerView.vue"),
+	},
 ];
 
 const router = createRouter({
