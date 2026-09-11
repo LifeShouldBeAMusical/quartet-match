@@ -18,7 +18,7 @@ onBeforeMount(() => store.fetchScratchQuartetList());
 		<h3 v-if="error">Error</h3>
 		<v-contaienr class="ma-0 pa-0 quartet-list-container">
 			<v-card v-for="(quartet, idx) in data" :key="idx">
-				<v-card-title>Quartet {{ idx + 1 }}</v-card-title>
+				<v-card-title>Quartet {{ idx + 1 }} ({{ quartet.quartetRange }})</v-card-title>
 				<v-card-text>
 					<v-table>
 						<tr>
