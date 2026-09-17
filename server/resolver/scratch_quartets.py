@@ -23,6 +23,8 @@ async def scratch_quartets() -> list[Quartet]:
     async with get_async_session() as session:
         singers = (await session.scalars(select(SingerModel))).all()
 
+        assert len(singers) >= 4, f"Not Enough Singers for Quartets: {len(singers)}"
+
         attempts = 0
         valid = False
         quartets = []
@@ -30,7 +32,9 @@ async def scratch_quartets() -> list[Quartet]:
             print(attempts)
             quartets = []
 
-            shuffled_singers = sorted(singers, key=lambda x: random())
+            shuffled_singers = sorted(singers, key=lambda x: random())[
+                0 : len(singers) - (len(singers) % 4)
+            ]
             step_valid = True
 
             for idx in range(0, len(shuffled_singers), 4):
