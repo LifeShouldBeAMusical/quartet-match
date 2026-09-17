@@ -5,7 +5,7 @@ defineProps<{ singer: Singer }>();
 </script>
 
 <template>
-	<v-card>
+	<v-card class="singer-card">
 		<v-card-title>{{ singer.name.first }} {{ singer.name.last }}</v-card-title>
 		<v-card-text>
 			<v-table class="singer-voice-options">
@@ -45,10 +45,13 @@ defineProps<{ singer: Singer }>();
 </template>
 
 <style lang="scss">
-.singer-voice-options {
-	td,
-	th {
-		padding: 2px;
+.singer-card {
+	flex-grow: 1;
+	.singer-voice-options {
+		td,
+		th {
+			padding: 2px;
+		}
 	}
 }
 </style>

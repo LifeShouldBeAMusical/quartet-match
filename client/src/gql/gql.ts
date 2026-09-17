@@ -15,11 +15,14 @@ import type { TypedDocumentNode as DocumentNode } from "@graphql-typed-document-
  */
 type Documents = {
 	"\n\tmutation AddSinger(\n\t\t$first: String!\n\t\t$last: String!\n\t\t$voiceOptions: [VoiceOptionInput!]!\n\t) {\n\t\taddSinger(\n\t\t\tsinger: {\n\t\t\t\tname: { first: $first, last: $last }\n\t\t\t\tvoiceOptions: $voiceOptions\n\t\t\t}\n\t\t) {\n\t\t\tid\n\t\t}\n\t}\n": typeof types.AddSingerDocument;
+	"\n\tquery ScratchQuartets {\n\t\tscratchQuartets {\n\t\t\t...Quartet\n\t\t}\n\t}\n\n\tfragment Quartet on Quartet {\n\t\tquartetRange\n\t\ttenor {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tlead {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tbari {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tbass {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t}\n": typeof types.ScratchQuartetsDocument;
 	"\n\tquery SingerList {\n\t\tsingers {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t\tvoiceOptions {\n\t\t\t\tquartetRange\n\t\t\t\tvoice\n\t\t\t}\n\t\t}\n\t}\n": typeof types.SingerListDocument;
 };
 const documents: Documents = {
 	"\n\tmutation AddSinger(\n\t\t$first: String!\n\t\t$last: String!\n\t\t$voiceOptions: [VoiceOptionInput!]!\n\t) {\n\t\taddSinger(\n\t\t\tsinger: {\n\t\t\t\tname: { first: $first, last: $last }\n\t\t\t\tvoiceOptions: $voiceOptions\n\t\t\t}\n\t\t) {\n\t\t\tid\n\t\t}\n\t}\n":
 		types.AddSingerDocument,
+	"\n\tquery ScratchQuartets {\n\t\tscratchQuartets {\n\t\t\t...Quartet\n\t\t}\n\t}\n\n\tfragment Quartet on Quartet {\n\t\tquartetRange\n\t\ttenor {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tlead {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tbari {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tbass {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t}\n":
+		types.ScratchQuartetsDocument,
 	"\n\tquery SingerList {\n\t\tsingers {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t\tvoiceOptions {\n\t\t\t\tquartetRange\n\t\t\t\tvoice\n\t\t\t}\n\t\t}\n\t}\n":
 		types.SingerListDocument,
 };
@@ -44,6 +47,12 @@ export function graphql(source: string): unknown;
 export function graphql(
 	source: "\n\tmutation AddSinger(\n\t\t$first: String!\n\t\t$last: String!\n\t\t$voiceOptions: [VoiceOptionInput!]!\n\t) {\n\t\taddSinger(\n\t\t\tsinger: {\n\t\t\t\tname: { first: $first, last: $last }\n\t\t\t\tvoiceOptions: $voiceOptions\n\t\t\t}\n\t\t) {\n\t\t\tid\n\t\t}\n\t}\n",
 ): (typeof documents)["\n\tmutation AddSinger(\n\t\t$first: String!\n\t\t$last: String!\n\t\t$voiceOptions: [VoiceOptionInput!]!\n\t) {\n\t\taddSinger(\n\t\t\tsinger: {\n\t\t\t\tname: { first: $first, last: $last }\n\t\t\t\tvoiceOptions: $voiceOptions\n\t\t\t}\n\t\t) {\n\t\t\tid\n\t\t}\n\t}\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(
+	source: "\n\tquery ScratchQuartets {\n\t\tscratchQuartets {\n\t\t\t...Quartet\n\t\t}\n\t}\n\n\tfragment Quartet on Quartet {\n\t\tquartetRange\n\t\ttenor {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tlead {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tbari {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tbass {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t}\n",
+): (typeof documents)["\n\tquery ScratchQuartets {\n\t\tscratchQuartets {\n\t\t\t...Quartet\n\t\t}\n\t}\n\n\tfragment Quartet on Quartet {\n\t\tquartetRange\n\t\ttenor {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tlead {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tbari {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t\tbass {\n\t\t\tid\n\t\t\tname {\n\t\t\t\tfirst\n\t\t\t\tlast\n\t\t\t}\n\t\t}\n\t}\n"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -13,9 +13,9 @@ onBeforeMount(() => store.fetchSingerList());
 <template>
 	<v-container fluid class="ma-0 pa-0">
 		<h2>Singers</h2>
-		<v-contaienr class="ma-0 pa-0 singer-list-container">
+		<v-container class="ma-0 pa-0 singer-list-container">
 			<singer-card v-for="singer in data" :key="singer.id" :singer="singer" />
-		</v-contaienr>
+		</v-container>
 	</v-container>
 </template>
 
@@ -23,5 +23,6 @@ onBeforeMount(() => store.fetchSingerList());
 .singer-list-container {
 	display: flex;
 	flex-flow: row wrap;
+	gap: 16px;
 }
 </style>

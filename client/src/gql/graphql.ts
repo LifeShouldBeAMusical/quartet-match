@@ -45,6 +45,15 @@ export type MutationAddVoiceOptionsToSingerArgs = {
 	voiceOptions: Array<VoiceOptionInput>;
 };
 
+export type Quartet = {
+	__typename?: "Quartet";
+	bari: Singer;
+	bass: Singer;
+	lead: Singer;
+	quartetRange: QuartetRangeEnum;
+	tenor: Singer;
+};
+
 export enum QuartetRangeEnum {
 	Satb = "SATB",
 	Ssaa = "SSAA",
@@ -53,6 +62,8 @@ export enum QuartetRangeEnum {
 
 export type Query = {
 	__typename?: "Query";
+	/** Scratch Quartets */
+	scratchQuartets: Array<Quartet>;
 	/** Singer */
 	singer: Singer;
 	/** List of Singers */
@@ -115,6 +126,61 @@ export type AddSingerMutation = {
 	addSinger: { __typename?: "Singer"; id: string };
 };
 
+export type ScratchQuartetsQueryVariables = Exact<{ [key: string]: never }>;
+
+export type ScratchQuartetsQuery = {
+	__typename?: "Query";
+	scratchQuartets: Array<{
+		__typename?: "Quartet";
+		quartetRange: QuartetRangeEnum;
+		tenor: {
+			__typename?: "Singer";
+			id: string;
+			name: { __typename?: "SingerName"; first: string; last: string };
+		};
+		lead: {
+			__typename?: "Singer";
+			id: string;
+			name: { __typename?: "SingerName"; first: string; last: string };
+		};
+		bari: {
+			__typename?: "Singer";
+			id: string;
+			name: { __typename?: "SingerName"; first: string; last: string };
+		};
+		bass: {
+			__typename?: "Singer";
+			id: string;
+			name: { __typename?: "SingerName"; first: string; last: string };
+		};
+	}>;
+};
+
+export type QuartetFragment = {
+	__typename?: "Quartet";
+	quartetRange: QuartetRangeEnum;
+	tenor: {
+		__typename?: "Singer";
+		id: string;
+		name: { __typename?: "SingerName"; first: string; last: string };
+	};
+	lead: {
+		__typename?: "Singer";
+		id: string;
+		name: { __typename?: "SingerName"; first: string; last: string };
+	};
+	bari: {
+		__typename?: "Singer";
+		id: string;
+		name: { __typename?: "SingerName"; first: string; last: string };
+	};
+	bass: {
+		__typename?: "Singer";
+		id: string;
+		name: { __typename?: "SingerName"; first: string; last: string };
+	};
+};
+
 export type SingerListQueryVariables = Exact<{ [key: string]: never }>;
 
 export type SingerListQuery = {
@@ -131,6 +197,109 @@ export type SingerListQuery = {
 	}>;
 };
 
+export const QuartetFragmentDoc = {
+	kind: "Document",
+	definitions: [
+		{
+			kind: "FragmentDefinition",
+			name: { kind: "Name", value: "Quartet" },
+			typeCondition: {
+				kind: "NamedType",
+				name: { kind: "Name", value: "Quartet" },
+			},
+			selectionSet: {
+				kind: "SelectionSet",
+				selections: [
+					{ kind: "Field", name: { kind: "Name", value: "quartetRange" } },
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "tenor" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "name" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{ kind: "Field", name: { kind: "Name", value: "first" } },
+											{ kind: "Field", name: { kind: "Name", value: "last" } },
+										],
+									},
+								},
+							],
+						},
+					},
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "lead" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "name" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{ kind: "Field", name: { kind: "Name", value: "first" } },
+											{ kind: "Field", name: { kind: "Name", value: "last" } },
+										],
+									},
+								},
+							],
+						},
+					},
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "bari" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "name" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{ kind: "Field", name: { kind: "Name", value: "first" } },
+											{ kind: "Field", name: { kind: "Name", value: "last" } },
+										],
+									},
+								},
+							],
+						},
+					},
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "bass" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "name" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{ kind: "Field", name: { kind: "Name", value: "first" } },
+											{ kind: "Field", name: { kind: "Name", value: "last" } },
+										],
+									},
+								},
+							],
+						},
+					},
+				],
+			},
+		},
+	],
+} as unknown as DocumentNode<QuartetFragment, unknown>;
 export const AddSingerDocument = {
 	kind: "Document",
 	definitions: [
@@ -247,6 +416,135 @@ export const AddSingerDocument = {
 		},
 	],
 } as unknown as DocumentNode<AddSingerMutation, AddSingerMutationVariables>;
+export const ScratchQuartetsDocument = {
+	kind: "Document",
+	definitions: [
+		{
+			kind: "OperationDefinition",
+			operation: "query",
+			name: { kind: "Name", value: "ScratchQuartets" },
+			selectionSet: {
+				kind: "SelectionSet",
+				selections: [
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "scratchQuartets" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{
+									kind: "FragmentSpread",
+									name: { kind: "Name", value: "Quartet" },
+								},
+							],
+						},
+					},
+				],
+			},
+		},
+		{
+			kind: "FragmentDefinition",
+			name: { kind: "Name", value: "Quartet" },
+			typeCondition: {
+				kind: "NamedType",
+				name: { kind: "Name", value: "Quartet" },
+			},
+			selectionSet: {
+				kind: "SelectionSet",
+				selections: [
+					{ kind: "Field", name: { kind: "Name", value: "quartetRange" } },
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "tenor" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "name" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{ kind: "Field", name: { kind: "Name", value: "first" } },
+											{ kind: "Field", name: { kind: "Name", value: "last" } },
+										],
+									},
+								},
+							],
+						},
+					},
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "lead" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "name" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{ kind: "Field", name: { kind: "Name", value: "first" } },
+											{ kind: "Field", name: { kind: "Name", value: "last" } },
+										],
+									},
+								},
+							],
+						},
+					},
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "bari" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "name" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{ kind: "Field", name: { kind: "Name", value: "first" } },
+											{ kind: "Field", name: { kind: "Name", value: "last" } },
+										],
+									},
+								},
+							],
+						},
+					},
+					{
+						kind: "Field",
+						name: { kind: "Name", value: "bass" },
+						selectionSet: {
+							kind: "SelectionSet",
+							selections: [
+								{ kind: "Field", name: { kind: "Name", value: "id" } },
+								{
+									kind: "Field",
+									name: { kind: "Name", value: "name" },
+									selectionSet: {
+										kind: "SelectionSet",
+										selections: [
+											{ kind: "Field", name: { kind: "Name", value: "first" } },
+											{ kind: "Field", name: { kind: "Name", value: "last" } },
+										],
+									},
+								},
+							],
+						},
+					},
+				],
+			},
+		},
+	],
+} as unknown as DocumentNode<
+	ScratchQuartetsQuery,
+	ScratchQuartetsQueryVariables
+>;
 export const SingerListDocument = {
 	kind: "Document",
 	definitions: [
