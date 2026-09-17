@@ -16,5 +16,6 @@ import MenuBar from "@/components/MenuBar.vue";
 <style>
 .router {
 	margin: 4em 0 0 0;
+	min-width: 600px;
 }
 </style>
