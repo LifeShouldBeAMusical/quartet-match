@@ -9,6 +9,16 @@ from enum_model import SingerVoiceEnum
 
 
 async def scratch_quartets() -> list[Quartet]:
+    """
+    Fetch all Singers
+
+    Shuffle singers in a random order.
+    Check if each group of 4 is a valid quartet.
+    If all are valid, return the quartets.
+    If not, try again.
+
+    Try up to 100 times, then return an empty list of quartets.
+    """
 
     async with get_async_session() as session:
         singers = (await session.scalars(select(SingerModel))).all()
@@ -36,6 +46,12 @@ async def scratch_quartets() -> list[Quartet]:
 
 
 def valid_quartet(singers: list[SingerModel]) -> Optional[Quartet]:
+    """
+    If a valid quartet can be made of 4 singers, return the quartet
+
+    Otherwise, return None
+    """
+
     if len(singers) != 4:
         raise ValueError(f"Wrong Number of Singers: {len(singers)}")
 
@@ -84,6 +100,8 @@ def valid_quartet(singers: list[SingerModel]) -> Optional[Quartet]:
 def permutations(
     a: SingerModel, b: SingerModel, c: SingerModel, d: SingerModel
 ) -> list[list[SingerModel]]:
+    """Every possible ordering of 4 singers"""
+
     return [
         [a, b, c, d],
         [a, b, d, c],
